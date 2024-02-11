@@ -12,7 +12,7 @@ int main() {
   int bx = 0 + BALL_SIZE;
   int by = SCREEN_HIEGHT / 2 + BALL_SIZE;
   float speedx = 10;
-  float speedy = -150;
+  float speedy = -50;
   float accx = 0.1;
   float accy = 0.1;
   int floor = 1;
@@ -24,30 +24,23 @@ int main() {
       const char *Floor = TextFormat("FLOOR %d", floor);
       int font_widht = MeasureText(Floor, FONTSIZE);
 
-      DrawText(Floor, (SCREEN_WIDTH / 2) - (font_widht * 0.5),
-               SCREEN_HIEGHT * 0.5 - FONTSIZE * 0.5, FONTSIZE, GRAY);
+      DrawText(Floor, (SCREEN_WIDTH * 0.5) - (font_widht * 0.5),
+               (SCREEN_HIEGHT * 0.5) - (FONTSIZE * 0.5), FONTSIZE, GRAY);
 
       if (bx >= SCREEN_WIDTH - BALL_SIZE || bx < 0 + BALL_SIZE) {
         accx += (accx + 0.5) * -1;
         speedx *= -1 + accx;
       }
-      if (by < SCREEN_HIEGHT - BALL_SIZE && speedy <= LIMIT) {
-        accy += 0.01;
-        speedy += accy;
-        bx += speedx;
-      }
+      if (by < SCREEN_HIEGHT - BALL_SIZE && speedy <= LIMIT)
+        accy += 0.01, speedy += accy, bx += speedx;
 
       if (by <= (SCREEN_HIEGHT - BALL_SIZE) && floor >= 1) {
         by += speedy;
+        if (by <= 0)
+          floor += 1, by = SCREEN_HIEGHT - BALL_SIZE;
 
-        if (by <= 0) {
-          floor += 1;
-          by = SCREEN_HIEGHT - BALL_SIZE;
-        }
-        if (by >= SCREEN_HIEGHT - BALL_SIZE + 2 && floor > 1) {
-          floor -= 1;
-          by = 0;
-        }
+        if (by >= SCREEN_HIEGHT - BALL_SIZE + 2 && floor > 1)
+          floor -= 1, by = 0;
       }
       DrawCircle(bx, by, BALL_SIZE, RED);
     }
