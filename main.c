@@ -21,8 +21,8 @@ int main() {
     BeginDrawing();
     {
       ClearBackground(RAYWHITE);
-      int font_widht =
-          MeasureText(TextFormat("X %d | Y %d | FLOOR  %d", bx, by, floor), 60);
+      int font_widht = MeasureText(
+          TextFormat("X %d | Y %d | FLOOR  %d", bx, by, floor), FONTSIZE);
 
       DrawText(TextFormat("X %d | Y %d | FLOOR  %d", bx, by, floor),
                (SCREEN_WIDTH / 2) - (font_widht * 0.5),
