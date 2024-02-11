@@ -23,9 +23,11 @@ int main() {
       ClearBackground(RAYWHITE);
       int font_widht =
           MeasureText(TextFormat("X %d | Y %d | FLOOR  %d", bx, by, floor), 60);
+
       DrawText(TextFormat("X %d | Y %d | FLOOR  %d", bx, by, floor),
                (SCREEN_WIDTH / 2) - (font_widht * 0.5),
                SCREEN_HIEGHT * 0.5 - FONTSIZE * 0.5, FONTSIZE, GRAY);
+
       if (bx >= SCREEN_WIDTH - BALL_SIZE || bx < 0 + BALL_SIZE) {
         accx += (accx + 0.5) * -1;
         speedx *= -1 + accx;
