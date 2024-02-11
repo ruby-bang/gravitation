@@ -21,11 +21,10 @@ int main() {
     BeginDrawing();
     {
       ClearBackground(RAYWHITE);
-      int font_widht = MeasureText(
-          TextFormat("X %d | Y %d | FLOOR  %d", bx, by, floor), FONTSIZE);
+      const char *Floor = TextFormat("FLOOR %d", floor);
+      int font_widht = MeasureText(Floor, FONTSIZE);
 
-      DrawText(TextFormat("X %d | Y %d | FLOOR  %d", bx, by, floor),
-               (SCREEN_WIDTH / 2) - (font_widht * 0.5),
+      DrawText(Floor, (SCREEN_WIDTH / 2) - (font_widht * 0.5),
                SCREEN_HIEGHT * 0.5 - FONTSIZE * 0.5, FONTSIZE, GRAY);
 
       if (bx >= SCREEN_WIDTH - BALL_SIZE || bx < 0 + BALL_SIZE) {
